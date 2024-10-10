@@ -90,4 +90,4 @@ nix run nixpkgs#nixos-rebuild -- switch --fast --flake .#utm --target-host root@
 ```
 
 ## License
-MIT
+ISC
