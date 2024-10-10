@@ -65,6 +65,13 @@ mkdir -p ~/.config/nix/
 echo -e "\nbuilders = ssh://root@utm-vm-nixos-builder.local?ssh-key=$HOME/.ssh/utm-vm-nixos-builder x86_64-linux" >> ~/.config/nix/nix.conf
 ```
 
+After you have done all of this steps you should be able to use the remote builder in VM:
+```sh
+nix build --impure --expr '(with import <nixpkgs> { system = "x86_64-linux"; }; runCommand "foo" {} "uname > $out")'
+cat result
+```
+If the file outputs `Linux` everything is working properly.
+
 ## Getting the IP address of the VM
 
 ```sh
