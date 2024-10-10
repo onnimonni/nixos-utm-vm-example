@@ -9,9 +9,26 @@
     pkgs.gitMinimal
   ];
 
+  networking.hostName = "utm-vm-nixos-builder";
+
+  services = {
+      avahi = {
+          enable = true;
+          nssmdns4 = true;
+          openFirewall = true;
+          publish = {
+              enable = true;
+              userServices = true;
+              addresses = true;
+          };
+      };
+  };
+
+  virtualisation.rosetta.enable = true;
+  
   services.openssh.enable = true;
   users.users.root.openssh.authorizedKeys.keys = [
-    "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBMsvLc6BEB556NzZU0TarX9WkStle3+tFfvdFLZIco999VEYgnVBIdT37qaQlwhN5K8u+4KFe+P0MlQG7yGgd70= ecdsa-sha2-nistp256"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPQFdTlBtfe0pgFoyhCXgEIuV8p4j0bv6S0mxKexDWkA onnimonni@utm-vm-nixos-builder"
   ];
 
   system.stateVersion = "23.11";
